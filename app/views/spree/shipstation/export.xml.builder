@@ -2,6 +2,7 @@
 
 xml = Builder::XmlMarkup.new
 xml.instruct!
+xml.Hello "world"
 xml.Orders(pages: (@shipments.total_count / 50.0).ceil) {
   @shipments.each do |shipment|
     order = shipment.order
@@ -30,7 +31,7 @@ xml.Orders(pages: (@shipments.total_count / 50.0).ceil) {
           xml.Item {
             xml.SKU variant.sku
             xml.Name [variant.product.name, variant.options_text].join(" ")
-            xml.ImageUrl variant.images.first.try(:attachment).try(:url)
+            xml.ImageUrl "hello"#variant.images.first.try(:attachment).try(:url)
             xml.Weight variant.weight.to_f
             xml.WeightUnits SpreeShipstation.configuration.weight_units
             xml.Quantity line.quantity

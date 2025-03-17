@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Orders pages="1">
+  <% @ss.each do |s| %>
+  <% o = s.order %>
+  <% ba = Spree::Address.find(o.bill_address_id) %>
+  <% sa = Spree::Address.find(o.ship_address_id) %>
+  <% u = Spree::User.find(o.user_id) %>
+  <% state = Spree::State.find(sa.state_id) %>
+  <% if !state.nil? then st = state.abbr else st = sa.state_name end %>
+  <% c = Spree::Country.find(sa.country_id) %>
+  <% #s = sa.state_name?state.id:sa.state_name %>
+  <Order>
+    <OrderID><![CDATA[<%= s.id %>]]></OrderID>
+    <OrderNumber><![CDATA[<%= s.number %>]]></OrderNumber>
+    <OrderDate><%= o.completed_at.strftime("%m/%d/%Y %H:%M") %></OrderDate>
+    <OrderStatus><![CDATA[<%= s.state %>]]></OrderStatus>
+    <LastModified><%= [o.completed_at, s.updated_at].max.strftime("%m/%d/%Y %H:%M") %></LastModified>
+    <ShippingMethod><![CDATA[<%= s.shipping_method.try(:name) %>]]></ShippingMethod>
+    <CurrencyCode>USD</CurrencyCode> 
+    <OrderTotal><%= o.total %></OrderTotal>
+    <TaxAmount><%= o.tax_total %></TaxAmount>
+    <ShippingAmount><%= o.ship_total %></ShippingAmount>
+    <CustomerNotes><![CDATA[N/A]]></CustomerNotes>
+    <InternalNotes><![CDATA[N/A]]></InternalNotes>
+    <Gift>false</Gift>
+    <GiftMessage></GiftMessage>
+    <CustomField1><%= o.number %></CustomField1>
+    <CustomField2></CustomField2>
+    <CustomField3></CustomField3>
+    <Customer>
+      <CustomerCode><![CDATA[<%= o.email.slice(0, 50)%>]]></CustomerCode>
+      <BillTo>
+        <Name><![CDATA[<%= ba.firstname+" "+ba.lastname %>]]></Name>
+        <Company><![CDATA[<%= ba.company %>]]></Company>
+        <Phone><![CDATA[<%= ba.phone %>]]></Phone>
+        <Email><![CDATA[<%= u.email %>]]></Email>
+      </BillTo>
+      <ShipTo>
+        <Name><![CDATA[<%= sa.firstname+" "+sa.lastname %>]]></Name>
+        <Company><![CDATA[<%= sa.company %>]]></Company>
+        <Address1><![CDATA[<%= sa.address1 %>]]></Address1>
+        <Address2><![CDATA[<%= sa.address2 %>]]></Address2>
+        <City><![CDATA[<%= sa.city %>]]></City>
+        <State><![CDATA[<%= st %>]]></State>
+        <PostalCode><![CDATA[<%= sa.zipcode %>]]></PostalCode>
+        <Country><![CDATA[<%= c.iso %>]]></Country>
+        <Phone><![CDATA[<%= sa.phone %>]]></Phone>
+      </ShipTo>
+    </Customer>
+    <Items>
+      <% s.line_items.each do |i| %>
+      <% v = i.variant %>
+      <Item>
+        <SKU><![CDATA[<%= v.sku %>]]></SKU>
+        <Name><![CDATA[<%= [v.product.name, v.options_text].join(" ") %>]]></Name>
+        <ImageUrl><![CDATA[]]></ImageUrl>
+        <Weight><%= v.weight.to_f %></Weight>
+        <WeightUnits><%= SpreeShipstation.configuration.weight_units %></WeightUnits>
+        <Quantity><%= i.quantity %></Quantity>
+        <UnitPrice><%= i.price %></UnitPrice>
+        <Location><![CDATA[main]]></Location>
+      </Item>
+      <% end %>
+    </Items>
+  </Order>
+  <% end %>
+</Orders>
