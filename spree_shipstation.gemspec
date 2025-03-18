@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = "spree_shipstation"
-  s.version = "1.0.0"
+  s.version = "3.0.0"
   s.summary = "Simple support for shipstation for spree"
   s.description = "Built for spree 4.9 (may work with other versions) based on spree_shipstation"
   s.required_ruby_version = ">= 3.3.0"
