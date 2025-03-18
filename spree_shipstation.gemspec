@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "spree_shipstation"
-  s.version = 1.0.0
+  s.version = "1.0.0"
   s.summary = "Simple support for shipstation for spree"
   s.description = "Built for spree 4.9 (may work with other versions) based on spree_shipstation"
 
