@@ -4,6 +4,7 @@ require "spree_core"
 require "spree_extension"
 
 require "spree_shipstation/configuration"
+require "spree_shipstation/engine"
 
 module SpreeShipstation
   class << self
