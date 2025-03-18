@@ -2,6 +2,7 @@
 
 require "spree_core"
 require "spree_extension"
+
 require "spree_shipstation/configuration"
 
 module SpreeShipstation
