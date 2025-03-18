@@ -8,7 +8,6 @@
   <% state = Spree::State.find(sa.state_id) %>
   <% if !state.nil? then st = state.abbr else st = sa.state_name end %>
   <% c = Spree::Country.find(sa.country_id) %>
-  <% #s = sa.state_name?state.id:sa.state_name %>
   <Order>
     <OrderID><![CDATA[<%= s.id %>]]></OrderID>
     <OrderNumber><![CDATA[<%= s.number %>]]></OrderNumber>

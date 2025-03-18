@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 Spree::Core::Engine.add_routes do
-  post "/shipstation", to: "jship#postshipment"
-  get "/shipstation", to: "jship#listshipments"
+  post "/shipstation", to: "shipstation#postshipment"
+  get "/shipstation", to: "shipstation#listshipments"
 end
