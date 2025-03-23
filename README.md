@@ -72,7 +72,7 @@ There's nothing you need to do. Once properly configured, the integration just w
 
 This extension works with the following Spree versions:
 
-- 4.9.x
+- 4.9.x -- ok it was compatible, its broken now for whatever reason, I decided to try and intergrate shippo instead because i have a old account that dosent require a monthly fee,  shipstation requires a monthly fee, i only integrated it because it seemed like it would be the qickest to do, but its broken now and i dont want to fix it.
 
 ## Gotchas
 
@@ -82,5 +82,6 @@ There are a few gotchas you need to be aware of:
 
 ## License
 
-Copyright (c) 2020 Matthew Kennedy, released under the New BSD License.  
-2025 modified heavily by Jerome Stonebridge
+2025 modified heavily by Jerome Stonebridge, 
+origional Copyright (c) 2020 Matthew Kennedy, 
+released under the New BSD License.  
